@@ -1,3 +1,4 @@
+<!-- gallery.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,15 +26,15 @@
     <div class="container">
       <h2>Gallery</h2>
       <div class="media-container" id="media-container">
-        <!-- Dynamic content will be inserted here -->
+        {% for media_file in media_files %}
+        <div class="media-item">
+          <img src="{{ url_for('get_media_file', media_id=str(media_file['_id'])) }}" alt="Media">
+        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
 
   <script src="/static/gallery.js"></script>
-  <script>
-    // JavaScript code to fetch and display photos and videos from MongoDB database
-    // You'll need to implement this logic in script.js
-  </script>
 </body>
 </html>

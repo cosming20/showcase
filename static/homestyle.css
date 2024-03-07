@@ -65,3 +65,24 @@ button {
 button:hover {
   background-color: #555;
 }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#gallery {
+  padding: 50px 0;
+}
+
+.media-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.media-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

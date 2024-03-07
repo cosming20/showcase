@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+  <link rel="stylesheet" href="/static/homestyle.css">
 </head>
 <body>
-    <h1>Image</h1>
-    <img src="data:image/jpeg;base64,{{ base64_image }}" alt="Image">
+  <header>
+    <div class="container">
+      <h1>My Website</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="media-container" id="media-container">
+        {% for base64_image in base64_images %}
+        <div class="media-item">
+          <img src="data:image/jpeg;base64,{{ base64_image }}" alt="Media">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <script src="/static/gallery.js"></script>
 </body>
 </html>

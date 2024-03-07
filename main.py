@@ -15,8 +15,8 @@ videos = db['videos']
 fs = GridFS(db)
 
 app = Flask(__name__)
-with open ("image.jpg", "rb") as file:
-    image_data = file.read()
+# with open ("image.jpg", "rb") as file:
+#     image_data = file.read()
 
 fs_files = db.fs.files
 fs_chunks = db.fs.chunks
@@ -41,6 +41,28 @@ def show_image(media_id):
 @app.route('/')
 def main_page():
     return render_template('home.html')
+
+@app.route('/galleryy')
+def show_gallery():
+    # Retrieve multiple images from MongoDB GridFS
+    media_files = fs.find()
+
+    # List to store base64-encoded images
+    base64_images = []
+
+    # Loop through the media_files cursor
+    for media_file in media_files:
+        # Retrieve the image data from MongoDB GridFS
+        image_data = media_file.read()
+
+        # Encode the image data to base64
+        base64_image = base64.b64encode(image_data).decode('utf-8')
+
+        # Append the base64-encoded image to the list
+        base64_images.append(base64_image)
+
+    # Render the HTML template with the list of base64-encoded images
+    return render_template('image.html', base64_images=base64_images)
 
 @app.route('/cascada')
 def gallery_page():
