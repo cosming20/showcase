@@ -1,11 +1,10 @@
-<!-- gallery.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery</title>
-  <link rel="stylesheet" href="/static/homestyle.css">
+  <link rel="stylesheet" href="/static/test.css">
 </head>
 <body>
   <header>
@@ -26,9 +25,12 @@
     <div class="container">
       <h2>Gallery</h2>
       <div class="media-container" id="media-container">
-        {% for media_file in media_files %}
+        {% for media in media_info %}
         <div class="media-item">
-          <img src="{{ url_for('get_media_file', media_id=str(media_file['_id'])) }}" alt="Media">
+          <a href="{{ url_for('image_details', image_id=media['id']) }}">
+            <img src="data:image/jpeg;base64,{{ media['image'] }}" alt="Media" class="media-image">
+          </a>
+          <div class="description">Description goes here</div>
         </div>
         {% endfor %}
       </div>
