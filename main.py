@@ -4,7 +4,8 @@ from gridfs import GridFS
 from PIL import Image
 import io
 import json
-from bson import json_util
+from bson import json_util, ObjectId
+import base64
 
 
 client = MongoClient('mongodb+srv://cosminionutgagea:barbosuetare@cluster0.zcscweb.mongodb.net/')
@@ -17,13 +18,25 @@ app = Flask(__name__)
 with open ("image.jpg", "rb") as file:
     image_data = file.read()
 
-
-file_id = fs.put(image_data, filename = "image.jpg")
 fs_files = db.fs.files
 fs_chunks = db.fs.chunks
-retrieved_image = fs.get(file_id)
-image = Image.open(io.BytesIO(retrieved_image.read()))
-image.show()
+# file_id = fs.put(image_data, filename = "image.jpg")
+def  test (id):
+
+    retrieved_image = fs.get(id)
+    image = Image.open(io.BytesIO(retrieved_image.read()))
+    return image
+
+@app.route('/<media_id>')
+def show_image(media_id):
+    # Retrieve the image data from MongoDB GridFS
+    image_data = fs.get(ObjectId(media_id)).read()
+
+    # Convert the image data to base64 encoding
+    base64_image = base64.b64encode(image_data).decode('utf-8')
+
+    # Render the HTML template with the base64-encoded image
+    return render_template('image.html', base64_image=base64_image)
 
 @app.route('/')
 def main_page():
@@ -76,7 +89,7 @@ def get_media_file(media_id):
     # Retrieve the image data from MongoDB GridFS chunks
     chunks = fs.find({"files_id": media_id})
     image_data = b"".join(chunk.raw for chunk in chunks)
-
+    print(test(media_id))
     # Serve the image data as a file response
     return send_file(io.BytesIO(image_data), mimetype='image/jpeg')
 
