@@ -68,4 +68,15 @@ body {
     margin-top: 1.7%;
 
   }
+  .showcase{
+
+    background-color: #333;
+
+
+  }
+  img{
+    width: 300px;
+    height: auto;
+    border: 1px;
+  }
   
