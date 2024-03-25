@@ -11,6 +11,7 @@ body {
     overflow: hidden;
     display: flex;
     justify-content: space-between;
+    margin-top: 1.7%;
   }
   
   header {
@@ -28,20 +29,6 @@ body {
     color: #fff;
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-  nav ul {
-    list-style-type: none;
-    float: right;
-  }
-  
-  nav ul li {
-    display: inline;
-    margin-left: 20px;
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
   }
   .button{
 
@@ -63,9 +50,16 @@ body {
     color: #fff;
     text-decoration: none;
   }
-  div{
+  .photo{
 
-    margin-top: 1.7%;
+    
+
+  }
+  section{
+
+    margin-top: 30px;
+    border: 2px;
+    display: flex;
 
   }
   .showcase{
@@ -75,8 +69,25 @@ body {
 
   }
   img{
-    width: 300px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 800px;
     height: auto;
-    border: 1px;
+    border: 1px white solid;
   }
-  
+  h1{
+
+    float: right;
+    color: #fff;
+
+  }
+.editata{
+
+    margin-top: 5px;
+    width: 800px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 1000px;
+    border: 1px white solid;
+  }
